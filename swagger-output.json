@@ -1,0 +1,1139 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "JOB PORTAL",
+        "description": "job portal  Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "ORG",
+            "description": "API for organizations in the system"
+        },
+        {
+            "name": "USERS",
+            "description": "API for users in the system"
+        }
+        
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/org": {
+            "get": {
+                "tags": [
+                    "ORG"
+                ],
+                "summary": "API for Get all organizations ",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrg"
+                        }
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+         
+            
+        },
+       
+        "/org/login": {
+            "parameters": [
+                {
+                    "name": "name",
+                    "in": "body",
+                    "required": true,
+                    "description": "Email of organization that we want to find",
+                    "schema": {
+                        "$ref": "#/definitions/LOGIN"
+                    }
+                }
+            ],
+            "post": {
+                "summary": "Api for login",
+                "tags": [
+                    "ORG"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Userdata",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrg"
+                        }
+                    },
+                    "400": {
+                        "description": "getting user  failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+            
+           
+        },
+        "/org/{id}": {
+            "get": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "summary": "API Get organization profile",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrg"
+                        }
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "organization ID"
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "required": true,
+                        "description": "data for update organization",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrg"
+                        }
+                    }
+                ],
+                "summary": "API for update single organization ",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrg"
+                        }
+                      
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "organization ID"
+                    }
+                   
+                ],
+                "summary": "API for delete single organization ",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrg"
+                        }
+                      
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        },
+        "/org/deletejob/job_id={job_id}": {
+         
+            "delete": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "job ID"
+                    }
+                   
+                ],
+                "summary": "API for delete job ",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/jobs"
+                        }
+                      
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        },
+        "/org/Signup": {
+            "parameters": [
+                {
+                    "name": "name",
+                    "in": "body",
+                    "required": true,
+                    "description": "Insert organization data to  create ",
+                    "schema": {
+                        "$ref": "#/definitions/Organization"
+                    }
+                }
+            ],
+            "post": {
+                "summary": "Api for signup organization",
+                "tags": [
+                    "ORG"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Userdata",
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationResp"
+                        }
+                    },
+                    "400": {
+                        "description": "getting user by Email failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }     
+        },
+        "/org/forget/password": {
+            "post": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/LOGIN"
+                        }
+
+                     }
+                ],
+                "summary": "API for forget password ",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/org/reset-password/{id}/{token}": {
+            "post": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                       
+                    },
+                    {
+                        "name": "token",
+                        "in": "path"
+                       
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/password"
+                        }
+                       
+                    }
+                ],
+                "summary": "API for reset password ",
+                "responses": {
+                    "200": {
+                        "description": "Password update successfully"
+                        
+                    },
+                    "400": {
+                        "description": " something went wrong"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/org/updateJob/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path"
+                },
+                {
+                    "name": "name",
+                    "in": "body",
+                    "schema": {
+                        "$ref": "#/definitions/jobs"
+                    }
+                   
+                }
+              
+            ],
+            "patch": {
+                "summary": "Api for update job",
+                "tags": [
+                    "ORG"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Userdata",
+                        "schema": {
+                            "$ref": "#/definitions/jobs"
+                        }
+                        
+                    },
+                    "400": {
+                        "description": "getting user by ID failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+            
+           
+        }, 
+        "/user/Signup": {
+            "parameters": [
+                {
+                    "name": "name",
+                    "in": "body",
+                    "required": true,
+                    "description": "Insert organization data to  create ",
+                    "schema": {
+                        "$ref": "#/definitions/Users"
+                    }
+                }
+            ],
+            "post": {
+                "summary": "Api for signup user",
+                "tags": [
+                    "USERS"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Users data",
+                        "schema": {
+                            "$ref": "#/definitions/userRes"
+                        }
+                        
+                    },
+                    "400": {
+                        "description": "getting user by ID failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+            
+           
+        },
+        "/user/login": {
+            "parameters": [
+                {
+                    "name": "name",
+                    "in": "body",
+                    "required": true,
+                    "description": "Email of organization that we want to find",
+                    "schema": {
+                        "$ref": "#/definitions/LOGIN"
+                    }
+                }
+            ],
+            "post": {
+                "summary": "Api for login",
+                "tags": [
+                    "USERS"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Userdata",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                        
+                    },
+                    "400": {
+                        "description": "getting user by ID failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+            
+           
+        },
+        "/user/forget/password": {
+            "post": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body"
+                       
+                    }
+                ],
+                "summary": "API for forget user password ",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/user/reset-password/{id}/{token}": {
+            "post": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                       
+                    },
+                    {
+                        "name": "token",
+                        "in": "path"
+                       
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/password"
+                        }
+
+                       
+                    }
+                ],
+                "summary": "API for reset password ",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                        
+                    }
+                ],
+                "summary": "API Get user profile",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            } 
+            ,
+            "delete": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "user ID"
+                    }
+                   
+                ],
+                "summary": "API for delete single user ",
+                "responses": {
+                    "200": {
+                        "description": "Deleted User  data",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                      
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/user/update/user_id={id}/": {
+          
+            "patch": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                        
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                        
+                    }
+                ],
+                "summary": "API for update  user details",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }     
+        },
+        "/user/updateEducation/user_id={id}/obj_id={id2}": {
+          
+            "patch": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user_id"
+                        
+                    },
+                    {
+                        "name": "id2",
+                        "in": "path",
+                        "description": "education obj_id"
+                        
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateEducation"
+                        }
+                        
+                    }
+                ],
+                "summary": "API for update  user Education",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        },
+        "/user/updateSkillsp/user_id={id}": {
+          
+            "patch": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user_id"
+                        
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateSkills"
+                        }
+                        
+                    }
+                ],
+                "summary": "API for update  user skills",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        
+                    },
+                    "400": {
+                        "description": "something went wrong"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        },
+        "/jobs/{id}": {
+            "post": {
+                "tags": [
+                    "ORG"
+                ],
+                "parameters": [
+                    {
+                        "name": "org_id",
+                        "in": "path"
+                        
+                    },
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/jobs"
+                        }
+
+                    }
+                ],
+                "summary": "API for add job",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/jobs"
+                        }
+
+                        
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        },
+        "/jobs": {
+           
+            "get": {
+                "summary": "Api for show jobs",
+                "tags": [
+                    "USERS"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All jobs"
+                        
+                    },
+                    "400": {
+                        "description": "somthing error to getting jobs"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+         "/jobs/aggregate/job_id={job_id}": {
+            "get": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "path"      
+                    }
+                ],
+                "summary": "API for get Organization detail from job",
+                "responses": {
+                    "200": {
+                        "description": "Success"   
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        },
+        "/user/apply/user_id={id}/job_id={job_id}"
+        : {
+            "post": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"      
+                    },
+                    {
+                        "name": "job_id",
+                        "in": "path"      
+                    }
+                ],
+                "summary": "API apply job",
+                "responses": {
+                    "200": {
+                        "description": "Success"   
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+          
+        }
+        ,
+        "/user/deleteApplicant/user_id={user_id}/job_id={job_id}": {
+           
+            "delete": {
+                "tags": [
+                    "USERS"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "user ID"
+                    },
+                    {
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "job ID"
+                    }
+                   
+                ],
+                "summary": "API for delete applicant from  job ",
+                "responses": {
+                    "200": {
+                        "description": "Deleted User  data",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                      
+                    },
+                    "400": {
+                        "description": "getting users data failed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Organization": {
+            "properties": {
+                "userName": {
+                    "type": "string",
+                    "required":true
+                },
+                "Email": {
+                    "type": "string",
+                    "required":true
+                },
+                "Password":{
+                    "type": "string" 
+                },
+                "Country": {
+                    "type": "string",
+                    "required":true
+                }
+           }
+        },
+        "OrganizationRes": {
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "userName": {
+                    "type": "string",
+                    "required":true
+                },
+                "Email": {
+                    "type": "string",
+                    "required":true
+                },
+                "Country": {
+                    "type": "string",
+                    "required":true
+                }
+           }
+        },
+        "Users": {
+            "properties": {
+                
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "Password":{
+                    "type": "string" 
+                },
+                "Email": {
+                    "type": "string"
+                },
+                "Country": {
+                    "type": "string"
+                }
+           }
+           
+        },
+        "userRes": {
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "Email": {
+                    "type": "string"
+                },
+                "Country": {
+                    "type": "string"
+                }
+           }
+           
+        },
+        "Jobs": {
+            "properties": {
+                
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "requiredSkills": {
+                    "type": "array",
+                    "items":{ "type":"string"}
+                },
+                "location": {
+                    "type": "string"
+                },
+                "Country": {
+                    "type": "string"
+                },
+                "applicant": {
+                    "type": "array",
+                    "items":{ "type":"string"}
+                }
+           }
+        },
+        "UpdateUser": {
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "Country": {
+                    "type": "string"
+                },
+                 "Address":{
+                    "type":"string"
+                },
+                "Phone_no":{
+                    "type":"number"   
+                },
+                "Gender":{
+                    "type":"string",
+                    "required": true,
+                    "enum" : ["male", "female"]  
+                },
+                "description":{
+                    "type":"string"  
+                },
+                "education" :{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "tenth": {
+                                "type":"string"
+                            }
+                        }
+                     }
+                 },   
+                "skills" : { 
+                    "type":"object",  
+                    "properties": {
+                        "technicalSkills":{
+                            "type":"array",
+                            "items":{
+                                "type":"string"
+                            }
+                        },
+                        "TrainingAndInternshipe": { "type":"array",
+                            "items":{
+                                "type":"string"
+
+                            }}
+                       }                            
+                }
+           }
+        },
+        "UpdateOrg": {
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "Email": {
+                    "type": "string"
+                },
+                "Country": {
+                    "type": "string"
+                },
+                 "Address":{
+                    "type":"string"
+                    
+                },
+                "Phone_no":{
+                    "type":"number"   
+                }                
+           }
+        },
+        "UpdateEducation": {
+            "properties": {
+                "education" :{
+                   "type":"array",
+                   "items":{
+                       "type":"object",
+                       "properties":{
+                           "tenth": {
+                               "type":"string"
+                           }
+                       }
+     
+                    }
+                }          
+           }
+        },
+        "UpdateSkills": { 
+            "properties": {
+                "skills" : { 
+                    "type":"object",  
+                    "properties": {
+                        "technicalSkills":{
+                            "type":"array",
+                            "items":{
+                                "type":"string"
+                            }
+                        },
+                        "TrainingAndInternshipe": { "type":"array",
+                            "items":{
+                                "type":"string"
+
+                            }}
+
+                    }  
+                       
+                    
+                   
+                }
+            }    
+           
+        },
+        
+        "Login": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+           }
+        },
+        "password": {
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "C_password": {
+                    "type": "string"
+                }
+           }
+        },
+
+        "LOGIN":{
+            "type": "string",
+            "$ref": "#/definitions/Login"
+        },
+        "Password":{
+            "type": "string",
+            "$ref": "#/definitions/password"
+        },
+        "User":{
+            "type": "string",
+            "$ref": "#/definitions/Users"
+        },
+        "ORG": {
+            "type": "array",
+            "$ref": "#/definitions/Organization"
+        },
+        "userResp": {
+            "type": "array",
+            "$ref": "#/definitions/userRes"
+        },
+        "OrganizationResp": {
+            "type": "array",
+            "$ref": "#/definitions/OrganizationRes"
+        },
+
+        "updateUser":{
+            "type": "string",
+            "$ref": "#/definitions/UpdateUser"
+        },
+        "updateOrg":{
+            "type": "string",
+            "$ref": "#/definitions/UpdateOrg"
+        },
+        "jobs":{
+            "type": "string",
+            "$ref": "#/definitions/Jobs"
+        }
+    }
+}
